@@ -26,3 +26,12 @@ def graph_meta_to_text(path, output=None):
     tf.train.import_meta_graph(path)
     tf.train.export_meta_graph(output, as_text=True)
  
+
+def checkpoint_list_vars(chpnt):
+  """
+  Given path to a checkpoint list all variables available in the checkpoint
+  """
+  from tensorflow.contrib.framework.python.framework import checkpoint_utils
+  var_list = checkpoint_utils.list_variables(chpnt)
+  for v in var_list: print(v)
+  return var_list
