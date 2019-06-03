@@ -37,6 +37,11 @@ def reset_graph():
   """reset your graph when you build a new one"""
   tf.reset_default_graph()
 
+def max_bytes_in_use(sess):
+  tf.contrib.memory_stats.python.ops.memory_stats_ops
+  max_bytes_in_use = sess.run(memory_stats_ops.MaxBytesInUse())
+  return max_bytes_in_use
+
 
 def get_op(name):
   """
