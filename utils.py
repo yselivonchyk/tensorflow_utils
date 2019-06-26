@@ -72,3 +72,14 @@ def checkpoint_list_vars(chpnt):
   var_list = checkpoint_utils.list_variables(chpnt)
   for v in var_list: print(v)
   return var_list
+
+
+def timeit(func):
+    def timed(*args, **kw):
+        ts = time.time()
+        result = func(*args, **kw)
+        te = time.time()
+        print('%r %2.2f sec' % (method.__name__, te-ts))
+        return result
+    return timed
+
