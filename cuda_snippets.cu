@@ -32,6 +32,9 @@ computeCapabilityMinor = props.minor;
 multiProcessorCount = props.multiProcessorCount;
 warpSize = props.warpSize;
 
+cudaDeviceGetAttribute(&smemSize, cudaDevAttrMaxSharedMemoryPerBlock, devId);
+cudaDeviceGetAttribute(&numProcs, cudaDevAttrMultiProcessorCount, devId);
+
 
 //atomic ops
 atomicAdd(&a[i], 1);
