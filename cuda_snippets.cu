@@ -35,3 +35,8 @@ warpSize = props.warpSize;
 
 //atomic ops
 atomicAdd(&a[i], 1);
+
+
+// memory usage
+cudaMemPrefetchAsync(a, size, deviceId);
+cudaMemPrefetchAsync(a, size, cudaCpuDeviceId);
