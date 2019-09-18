@@ -31,3 +31,7 @@ computeCapabilityMajor = props.major;
 computeCapabilityMinor = props.minor;
 multiProcessorCount = props.multiProcessorCount;
 warpSize = props.warpSize;
+
+
+//atomic ops
+atomicAdd(&a[i], 1);
