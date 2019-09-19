@@ -41,11 +41,20 @@ atomicAdd(&a[i], 1);
 
 
 // memory usage
+cudaMallocManaged(&a, size);
 cudaMemPrefetchAsync(a, size, deviceId);
 cudaMemPrefetchAsync(a, size, cudaCpuDeviceId);
+cudaFree(a);
+
+cudaMalloc(); // on default GPU
+cudaMallocDevice();
+cudaMallocHost(); cudaFreeHost();
+cudaMemcpy(d_a, h_a, size, cudaMemcpyHostToDevice);
+cudaMemcpyAsync(d_a, h_a, size, cudaMemcpyHostToDevice, steram);
+
 
 //streams
 cudaStream_t stream;
 cudaStreamCreate(&stream);
 kernel<<<nblocks, nthreads, 0, stream>>>(); 
-cudaStreamDestroy(stream);
+cudaStreamDestroy(stream); // will keep going until ops are complete
