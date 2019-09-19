@@ -43,3 +43,9 @@ atomicAdd(&a[i], 1);
 // memory usage
 cudaMemPrefetchAsync(a, size, deviceId);
 cudaMemPrefetchAsync(a, size, cudaCpuDeviceId);
+
+//streams
+cudaStream_t stream;
+cudaStreamCreate(&stream);
+kernel<<<nblocks, nthreads, 0, stream>>>(); 
+cudaStreamDestroy(stream);
