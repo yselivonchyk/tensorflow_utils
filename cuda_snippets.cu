@@ -2,6 +2,14 @@
 // nvcc -arch=sm_70 -o out cuda.cu -run
 // !nvprof ./cuda
 
+// GDB debug:
+// # nvcc -g -G -gencode ...
+// #cuda-gdb
+// >>file runnable
+// >>break 
+// >>break student_func.cu:compact
+// >>run param1 param2
+
 // Error handling
 #include <stdio.h>
 #include <assert.h>
