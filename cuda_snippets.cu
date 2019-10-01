@@ -10,6 +10,11 @@
 // >>break student_func.cu:compact
 // >>run param1 param2
 
+// Nsight Eclipse cuda debugging run
+// https://github.com/AK-ayush/nsight-for-remote-gpu-server
+// server: docker pull kayush206/ssh-docker
+// server: nvidia-docker run -d -p <port>:22 kayush206/ssh-docker
+
 // Error handling
 #include <stdio.h>
 #include <assert.h>
@@ -68,3 +73,4 @@ cudaStream_t stream;
 cudaStreamCreate(&stream);
 kernel<<<nblocks, nthreads, 0, stream>>>(); 
 cudaStreamDestroy(stream); // will keep going until ops are complete
+
