@@ -19,6 +19,17 @@
 #include <stdio.h>
 #include <assert.h>
 
+__global__
+void add(int* A, int* B, int* C, int N){
+  int x = blockDim.x*blockIdx.x+threadIdx.x;
+  int y = blockDim.y*blockIdx.y+threadIdx.y;
+  int idx = y*N+x;
+}
+
+dim3 grid(32, 32, 1);
+dim3 block(N/32+1, N/32+1, 1);
+add<<<grid, block>>>(dA, dB, dC, N);
+
 inline cudaError_t checkCuda(cudaError_t result)
 {
   if (result != cudaSuccess) {
