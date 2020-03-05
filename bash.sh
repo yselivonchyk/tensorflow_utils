@@ -32,3 +32,14 @@ start(){
     aws ec2 describe-instances --instance-ids $id --query "Reservations[].Instances[].PublicIpAddress" --output text > $FILE
     export CIP=$(head -n 1 $FILE)
 }
+
+
+
+ips=$(aws ec2 describe-instances --query "Reservations[].Instances[].[PublicIpAddress,Tags[?Key=='Name']| [0].Value]" --output table \
+| grep 'val1\|val2' \
+| cut -c4-17)
+
+while read ip
+do
+  ssh ubuntu@$ip "docker image ls" < /dev/null &
+done <<< $ips
